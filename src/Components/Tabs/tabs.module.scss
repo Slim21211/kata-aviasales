@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    width: 502px;
+    margin-bottom: 20px;
+}
+
+.item {
+    width: 168px;
+    height: 50px;
+    color: #4A4A4A;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 50px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='168' height='50' viewBox='0 0 168 50' fill='none'%3e%3cpath d='M0.5 0.5H167.5V49.5H0.5V0.5Z' fill='white' stroke='%23DFE5EC'/%3e%3c/svg%3e");
+}
+
+.item.active {
+    color: #FFF;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='168' height='50' viewBox='0 0 168 50' fill='none'%3e%3cpath d='M0 6C0 2.68629 2.68629 0 6 0H168V50H6C2.68629 50 0 47.3137 0 44V6Z' fill='%232196F3'/%3e%3c/svg%3e");
+}

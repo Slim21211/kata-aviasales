@@ -1,0 +1,19 @@
+.show-tickets {
+    width: 502px;
+    height: 50px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='502' height='50' viewBox='0 0 502 50' fill='none'%3e%3cpath d='M0 5C0 2.23858 2.23858 0 5 0H497C499.761 0 502 2.23858 502 5V45C502 47.7614 499.761 50 497 50H5.00001C2.23858 50 0 47.7614 0 45V5Z' fill='%232196F3'/%3e%3c/svg%3e");
+    border: none;
+    color: var(--primary-colors-white, #FFF);
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 166.667% */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.show-tickets:hover {
+    cursor: pointer;
+}

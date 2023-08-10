@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    width: 141px;
+    height: 42px;
+}
+
+.item-title {
+    color: #A0B0B9;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px; /* 150% */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.item-value {
+    color: #4A4A4A;
+    font-family: Open Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px; /* 150% */
+}
