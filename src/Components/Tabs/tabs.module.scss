@@ -19,6 +19,10 @@
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='168' height='50' viewBox='0 0 168 50' fill='none'%3e%3cpath d='M0.5 0.5H167.5V49.5H0.5V0.5Z' fill='white' stroke='%23DFE5EC'/%3e%3c/svg%3e");
 }
 
+.item:hover {
+    cursor: pointer;
+}
+
 .item.active {
     color: #FFF;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='168' height='50' viewBox='0 0 168 50' fill='none'%3e%3cpath d='M0 6C0 2.68629 2.68629 0 6 0H168V50H6C2.68629 50 0 47.3137 0 44V6Z' fill='%232196F3'/%3e%3c/svg%3e");

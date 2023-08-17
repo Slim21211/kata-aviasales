@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@redux-devtools/core": "^3.13.1",
     "@reduxjs/toolkit": "^1.9.5",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.46.0",
@@ -53,7 +54,8 @@
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.1",
     "react-redux": "^8.1.2",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2"
   },
   "husky": {
     "hooks": {

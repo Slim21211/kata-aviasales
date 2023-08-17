@@ -9,8 +9,7 @@ export const Filters = () => {
   const { title, wrapper } = classes;
 
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filters);
-  console.log(filter);
+  const filter = useSelector((state) => state.checkboxReducer.filters);
 
   const onCheked = (id) => {
     dispatch({ type: 'SWITCH_ONE', payload: id });
