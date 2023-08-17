@@ -1,7 +1,2 @@
-export const switchAll = () => {
-  return {
-    type: 'SWITCH_ALL',
-    ownActive: false,
-    allActive: false,
-  };
-};
+export const changeTab = (payload) => ({ type: 'CHANGE_TAB', payload });
+export const swithOne = (payload) => ({ type: 'SWITCH_ONE', payload });

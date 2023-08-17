@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FiltersItem } from '../Filters-item/filters-item';
+import { swithOne } from '../../actions';
 
 import classes from './filters.module.scss';
 
@@ -12,7 +13,7 @@ export const Filters = () => {
   const filter = useSelector((state) => state.checkboxReducer.filters);
 
   const onCheked = (id) => {
-    dispatch({ type: 'SWITCH_ONE', payload: id });
+    dispatch(swithOne(id));
   };
 
   const components = filter.map((item) => {
