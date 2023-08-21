@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Card } from '../Card/card';
+import { Button } from '../Button/button';
 
 export const TicketList = () => {
   let id = 1;
-  const tickets = useSelector((state) => state.ticketReducer);
+  const tickets = useSelector((state) => state.ticketReducer.tickets);
+  const filters = useSelector((state) => state.ticketReducer.filters);
+  const [ticketsToShow, setTicketsToShow] = useState(5);
+
+  const filterTickets = tickets.filter((elem) => {
+    if (filters.all) {
+      return true;
+    }
+    const stopsCount = elem.segments[0].stops.length;
+
+    return (
+      (filters.withoutStops && stopsCount === 0) ||
+      (filters.oneStop && stopsCount === 1) ||
+      (filters.twoStops && stopsCount === 2) ||
+      (filters.threeStops && stopsCount === 3)
+    );
+  });
+
+  const visibleTickets = filterTickets.slice(0, ticketsToShow);
+
+  const showMoreTickets = () => {
+    console.log(ticketsToShow);
+    setTicketsToShow(ticketsToShow + 5);
+  };
 
   const formatPrice = (price) => {
     return price.toLocaleString('ru-RU');
@@ -23,14 +47,13 @@ export const TicketList = () => {
   };
 
   const setLandingTame = (dateString, minutes) => {
-    console.log(new Date(dateString));
     const takeOff = new Date(dateString).getTime();
     const landing = new Date(takeOff + minutes * 60000);
-    console.log(landing);
     return landing.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
   };
 
-  const components = tickets.tickets.map((item, index) => {
+  const components = visibleTickets.map((item) => {
+    console.log(item);
     const { price, carrier, segments } = item;
     const {
       origin: originIn,
@@ -46,35 +69,42 @@ export const TicketList = () => {
       date: dateBack,
       stops: stopsBack,
     } = segments[1];
-    while (index <= 4) {
-      return (
-        <Card
-          priceValue={formatPrice(price)}
-          codeIATA={carrier}
-          key={id++}
-          originIn={originIn}
-          destinationIn={destinationIn}
-          durationIn={formatDuration(durationIn)}
-          stopsIn={stopsIn}
-          takeOffTimeIn={setTakeOffTime(dateIn)}
-          landingTameIn={setLandingTame(dateIn, durationIn)}
-          originBack={originBack}
-          destinationBack={destinationBack}
-          durationBack={formatDuration(durationBack)}
-          stopsBack={stopsBack}
-          takeOffTimeBack={setTakeOffTime(dateBack)}
-          landingTameBack={setLandingTame(dateIn, durationBack)}
-        />
-      );
-    }
+    return (
+      <Card
+        priceValue={formatPrice(price)}
+        codeIATA={carrier}
+        key={id++}
+        originIn={originIn}
+        destinationIn={destinationIn}
+        durationIn={formatDuration(durationIn)}
+        stopsIn={stopsIn}
+        takeOffTimeIn={setTakeOffTime(dateIn)}
+        landingTameIn={setLandingTame(dateIn, durationIn)}
+        originBack={originBack}
+        destinationBack={destinationBack}
+        durationBack={formatDuration(durationBack)}
+        stopsBack={stopsBack}
+        takeOffTimeBack={setTakeOffTime(dateBack)}
+        landingTameBack={setLandingTame(dateIn, durationBack)}
+      />
+    );
   });
 
-  if (!tickets.tickets.length && tickets.error) {
+  if (!tickets.length && tickets.error) {
     return <div style={{ marginBottom: 20, textAlign: 'center' }}>Something has gone wrong... Try again later!</div>;
   }
-  if (!tickets.tickets.length) {
+  if (!tickets.length) {
     return <div style={{ marginBottom: 20, textAlign: 'center' }}>Loading...</div>;
   } else {
-    return <>{components}</>;
+    return (
+      <>
+        {!components.length ? (
+          <div style={{ marginBottom: 20, textAlign: 'center' }}>No tickets with such filters...</div>
+        ) : (
+          components
+        )}
+        {!components.length ? null : <Button onClick={showMoreTickets} />}
+      </>
+    );
   }
 };

@@ -17,7 +17,7 @@ export const Filters = () => {
   } = classes;
 
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.checkboxReducer);
+  const filters = useSelector((state) => state.ticketReducer.filters);
 
   const onCheked = (filter) => {
     if (filter === 'all') {
@@ -43,11 +43,6 @@ export const Filters = () => {
       dispatch(toggleFilter(filter));
     }
   };
-
-  // const components = filter.map((item) => {
-  //   const { title, id, isActive } = item;
-  //   return <FiltersItem title={title} key={id} isActive={isActive} onCheked={() => onCheked(id)} />;
-  // });
 
   return (
     <div className={wrapper}>

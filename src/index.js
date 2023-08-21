@@ -5,12 +5,10 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
 import { App } from './Components/App/app';
-import { checkboxReducer } from './Reducers/checkbox-reducer';
 import { tabsReducer } from './Reducers/tabs-reducer';
 import { ticketReducer } from './Reducers/get-ticket-reducer';
 
 const rootReducer = combineReducers({
-  checkboxReducer,
   tabsReducer,
   ticketReducer,
 });

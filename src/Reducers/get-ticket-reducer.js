@@ -6,6 +6,7 @@ import {
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_FAILURE,
 } from '../Actions/ticket-actions';
+import { TOGGLE_FILTER, SET_ALL_FILTERS, CLEAR_ALL_FILTERS } from '../Actions/checkbox-actions';
 
 const initialState = {
   searchId: null,
@@ -13,6 +14,13 @@ const initialState = {
   loadingSearchId: false,
   loadingTickets: false,
   error: null,
+  filters: {
+    all: false,
+    withoutStops: false,
+    oneStop: false,
+    twoStops: false,
+    threeStops: false,
+  },
 };
 
 export const ticketReducer = (state = initialState, action) => {
@@ -34,6 +42,28 @@ export const ticketReducer = (state = initialState, action) => {
       };
     case FETCH_TICKETS_FAILURE:
       return { ...state, loadingTickets: false, error: action.payload };
+    case TOGGLE_FILTER:
+      return {
+        ...state,
+        filters: { ...state.filters, [action.payload]: !state.filters[action.payload] },
+      };
+    case SET_ALL_FILTERS:
+      return {
+        ...state,
+        filters: { ...state.filters, all: true, withoutStops: true, oneStop: true, twoStops: true, threeStops: true },
+      };
+    case CLEAR_ALL_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          all: false,
+          withoutStops: false,
+          oneStop: false,
+          twoStops: false,
+          threeStops: false,
+        },
+      };
     default:
       return state;
   }
