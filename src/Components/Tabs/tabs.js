@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changeTab } from '../../actions';
+import { changeTab } from '../../Actions/actions';
 
 import classes from './tabs.module.scss';
 

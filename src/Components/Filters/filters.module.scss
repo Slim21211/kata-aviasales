@@ -20,3 +20,53 @@
     color: #4A4A4A;
     margin-bottom: 20px;
 }
+
+.wrapper-item {
+    height: 40px;
+    width: 232px;
+    margin-left: -20px;
+    padding-top: 10px;
+}
+
+.wrapper-item:hover {
+    background-color: #F1FCFF;
+}
+
+.wrapper-item:last-child {
+    margin-bottom: 10px;
+}
+
+.name {
+    color: #4A4A4A;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.check {
+    padding-left: 50px;
+}
+
+.check-input {
+    appearance: none;
+}
+
+.check-box {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background:  url('../../assets/icons/Checkbox.svg') no-repeat;
+    margin-left: -30px;
+}
+
+.check-input:checked + .check-box {
+    background:  url('../../assets/icons/Checkbox_checked.svg') no-repeat;
+}
+
+.check-input:focus + .check-box {
+    background-color: #F1FCFF;
+    box-shadow: .5px .5px rgba(66, 147, 245, 1.0),
+                -.5px -.5px rgba(66, 147, 245, 1.0);
+    border-radius: 3px;
+}

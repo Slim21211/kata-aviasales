@@ -1,5 +1,7 @@
-import React from 'react';
+import { React, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
+import getSessionID from '../../Actions/ticket-actions';
 import { Header } from '../Header/header';
 import { Filters } from '../Filters/filters';
 import { TicketList } from '../Ticket-list/ticket-list';
@@ -10,6 +12,11 @@ import classes from './app.module.scss';
 
 export const App = () => {
   const { main, 'main-block': mainBlock } = classes;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(getSessionID())), [];
+
   return (
     <div className={main}>
       <Header />
