@@ -12,7 +12,6 @@ export const Tabs = () => {
   const sorting = useSelector((state) => state.ticketReducer.sorting);
 
   const changeTab = (sorting) => {
-    console.log(sorting);
     dispatch(setSorting(sorting));
   };
 

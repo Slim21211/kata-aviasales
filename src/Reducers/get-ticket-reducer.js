@@ -45,7 +45,7 @@ export const ticketReducer = (state = initialState, action) => {
         error: null,
       };
     case FETCH_TICKETS_FAILURE:
-      return { ...state, loadingTickets: false, stop: true, error: action.payload };
+      return { ...state, loadingTickets: false, error: action.payload };
     case SET_STOP_FETCHING:
       return { ...state, stop: true };
     case TOGGLE_FILTER:

@@ -5,10 +5,12 @@ import { Card } from '../Card/card';
 import { Button } from '../Button/button';
 import Loader from '../Loader/loader';
 import { Warning } from '../Alert/warning';
+import { Error } from '../Error/error';
 
 export const TicketList = () => {
   let id = 1;
   const tickets = useSelector((state) => state.ticketReducer.tickets);
+  const error = useSelector((state) => state.ticketReducer.error);
   const filters = useSelector((state) => state.ticketReducer.filters);
   const sorting = useSelector((state) => state.ticketReducer.sorting);
   const stop = useSelector((state) => state.ticketReducer.stop);
@@ -102,8 +104,14 @@ export const TicketList = () => {
     );
   });
 
-  if (!tickets.length && tickets.error) {
-    return <div style={{ marginBottom: 20, textAlign: 'center' }}>Something has gone wrong... Try again later!</div>;
+  if (error !== null && !stop) {
+    return (
+      <>
+        <Error text={'Retry your search for the full list of available tickets'} />
+        {!components.length ? <Warning text={'Nothing found, try to change the search settings'} /> : components}
+        {!components.length ? null : <Button onClick={showMoreTickets} />}
+      </>
+    );
   }
 
   if (!stop) {
