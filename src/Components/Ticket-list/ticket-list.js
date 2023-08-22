@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Card } from '../Card/card';
 import { Button } from '../Button/button';
 import Loader from '../Loader/loader';
+import { Warning } from '../Alert/warning';
 
 export const TicketList = () => {
   let id = 1;
@@ -101,14 +102,10 @@ export const TicketList = () => {
     );
   });
 
-  console.log(components.length);
-
   if (!tickets.length && tickets.error) {
     return <div style={{ marginBottom: 20, textAlign: 'center' }}>Something has gone wrong... Try again later!</div>;
   }
-  if (!components.length) {
-    return <div style={{ marginBottom: 20, textAlign: 'center' }}>No tickets with such filters...</div>;
-  }
+
   if (!stop) {
     return (
       <>
@@ -116,6 +113,9 @@ export const TicketList = () => {
         {!components.length ? null : <Button onClick={showMoreTickets} />}
       </>
     );
+  }
+  if (!components.length) {
+    return <Warning text={'Nothing found, try to change the search settings'} />;
   }
 
   return (
