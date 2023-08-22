@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux';
 
 import { Card } from '../Card/card';
 import { Button } from '../Button/button';
+import Loader from '../Loader/loader';
 
 export const TicketList = () => {
   let id = 1;
   const tickets = useSelector((state) => state.ticketReducer.tickets);
   const filters = useSelector((state) => state.ticketReducer.filters);
   const sorting = useSelector((state) => state.ticketReducer.sorting);
+  const stop = useSelector((state) => state.ticketReducer.stop);
   const [ticketsToShow, setTicketsToShow] = useState(5);
 
   const filterTickets = tickets.filter((elem) => {
@@ -63,7 +65,6 @@ export const TicketList = () => {
   };
 
   const components = visibleTickets.map((item) => {
-    console.log(item);
     const { price, carrier, segments } = item;
     const {
       origin: originIn,
@@ -100,21 +101,27 @@ export const TicketList = () => {
     );
   });
 
+  console.log(components.length);
+
   if (!tickets.length && tickets.error) {
     return <div style={{ marginBottom: 20, textAlign: 'center' }}>Something has gone wrong... Try again later!</div>;
   }
-  if (!tickets.length) {
-    return <div style={{ marginBottom: 20, textAlign: 'center' }}>Loading...</div>;
-  } else {
+  if (!components.length) {
+    return <div style={{ marginBottom: 20, textAlign: 'center' }}>No tickets with such filters...</div>;
+  }
+  if (!stop) {
     return (
       <>
-        {!components.length ? (
-          <div style={{ marginBottom: 20, textAlign: 'center' }}>No tickets with such filters...</div>
-        ) : (
-          components
-        )}
+        <Loader />;{components}
         {!components.length ? null : <Button onClick={showMoreTickets} />}
       </>
     );
   }
+
+  return (
+    <>
+      {components}
+      {!components.length ? null : <Button onClick={showMoreTickets} />}
+    </>
+  );
 };

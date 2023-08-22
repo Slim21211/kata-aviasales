@@ -5,6 +5,7 @@ export const FETCH_SEARCH_ID_FAILURE = 'FETCH_SEARCH_ID_FAILURE';
 export const FETCH_TICKETS_REQUEST = 'FETCH_TICKETS_REQUEST';
 export const FETCH_TICKETS_SUCCESS = 'FETCH_TICKETS_SUCCESS';
 export const FETCH_TICKETS_FAILURE = 'FETCH_TICKETS_FAILURE';
+export const SET_STOP_FETCHING = 'SET_STOP_FETCHING';
 
 const getSessionID = () => {
   return (dispatch) => {
@@ -46,7 +47,7 @@ export const fetchTickets = (searchId) => {
 
           if (!data.stop) {
             fetchMoreTickets();
-          }
+          } else dispatch({ type: SET_STOP_FETCHING, payload: data.stop });
         })
         .catch((error) => {
           dispatch({ type: FETCH_TICKETS_FAILURE, payload: error.message });
