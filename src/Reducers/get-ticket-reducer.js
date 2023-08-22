@@ -7,6 +7,7 @@ import {
   FETCH_TICKETS_FAILURE,
 } from '../Actions/ticket-actions';
 import { TOGGLE_FILTER, SET_ALL_FILTERS, CLEAR_ALL_FILTERS } from '../Actions/checkbox-actions';
+import { SET_SORTING } from '../Actions/sorting-actions';
 
 const initialState = {
   searchId: null,
@@ -21,6 +22,7 @@ const initialState = {
     twoStops: false,
     threeStops: false,
   },
+  sorting: 'cheapest',
 };
 
 export const ticketReducer = (state = initialState, action) => {
@@ -64,6 +66,8 @@ export const ticketReducer = (state = initialState, action) => {
           threeStops: false,
         },
       };
+    case SET_SORTING:
+      return { ...state, sorting: action.payload };
     default:
       return state;
   }

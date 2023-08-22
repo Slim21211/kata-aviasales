@@ -8,6 +8,7 @@ export const TicketList = () => {
   let id = 1;
   const tickets = useSelector((state) => state.ticketReducer.tickets);
   const filters = useSelector((state) => state.ticketReducer.filters);
+  const sorting = useSelector((state) => state.ticketReducer.sorting);
   const [ticketsToShow, setTicketsToShow] = useState(5);
 
   const filterTickets = tickets.filter((elem) => {
@@ -24,10 +25,19 @@ export const TicketList = () => {
     );
   });
 
-  const visibleTickets = filterTickets.slice(0, ticketsToShow);
+  const filterAndSortTickets = filterTickets.sort((a, b) => {
+    if (sorting === 'cheapest') {
+      return a.price - b.price;
+    } else if (sorting === 'fastest') {
+      return a.segments[0].duration - b.segments[0].duration;
+    } else {
+      return 0;
+    }
+  });
+
+  const visibleTickets = filterAndSortTickets.slice(0, ticketsToShow);
 
   const showMoreTickets = () => {
-    console.log(ticketsToShow);
     setTicketsToShow(ticketsToShow + 5);
   };
 

@@ -5,7 +5,7 @@ import getSessionID from '../../Actions/ticket-actions';
 import { Header } from '../Header/header';
 import { Filters } from '../Filters/filters';
 import { TicketList } from '../Ticket-list/ticket-list';
-import Tabs from '../Tabs/tabs';
+import { Tabs } from '../Tabs/tabs';
 
 import classes from './app.module.scss';
 

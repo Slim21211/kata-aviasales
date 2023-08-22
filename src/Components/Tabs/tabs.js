@@ -1,32 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { changeTab } from '../../Actions/actions';
+import { setSorting } from '../../Actions/sorting-actions';
 
 import classes from './tabs.module.scss';
 
-const Tabs = ({ tabs, changeTab }) => {
+export const Tabs = () => {
   const { active, wrapper, item } = classes;
 
-  const components = tabs.map((elem) => {
-    const { title, id, isActive } = elem;
-    return (
-      <div className={isActive ? `${item} ${active}` : `${item}`} id={id} key={title} onClick={() => changeTab(id)}>
-        {title}
-      </div>
-    );
-  });
-  return <div className={wrapper}>{components}</div>;
-};
+  const dispatch = useDispatch();
+  const sorting = useSelector((state) => state.ticketReducer.sorting);
+  console.log(sorting);
 
-const mapStateToProps = (state) => {
-  return { tabs: state.tabsReducer.tabs };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeTab: (payload) => dispatch(changeTab(payload)),
+  const changeTab = (sorting) => {
+    console.log(sorting);
+    dispatch(setSorting(sorting));
   };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
+  return (
+    <div className={wrapper}>
+      <div className={sorting === 'cheapest' ? `${item} ${active}` : `${item}`} onClick={() => changeTab('cheapest')}>
+        Самый дешевый
+      </div>
+      <div className={sorting === 'fastest' ? `${item} ${active}` : `${item}`} onClick={() => changeTab('fastest')}>
+        Самый быстрый
+      </div>
+      <div className={sorting === 'optimal' ? `${item} ${active}` : `${item}`} onClick={() => changeTab('optimal')}>
+        Оптимальный
+      </div>
+    </div>
+  );
+};
